@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form hx-post="/web/login" hx-target="#result" hx-swap="innerHTML">
+  <label>Email <input type="email" name="email" required></label>
+  <label>Password <input type="password" name="password" required></label>
+  <button>Login</button>
+</form>
+<div id="result"></div>
+{% endblock %}

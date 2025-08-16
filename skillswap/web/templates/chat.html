@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Chat (demo)</h2>
+<p>Enter your JWT and the receiver user id to send messages.</p>
+<input id="token" placeholder="JWT token" style="width:100%"/>
+<input id="to" type="number" placeholder="Receiver user id"/>
+<div>
+  <input id="message" placeholder="Type a message"/>
+  <button onclick="sendMsg()">Send</button>
+</div>
+<pre id="log"></pre>
+<script>
+let ws=null;
+function connect(){
+  const t=document.getElementById('token').value;
+  if(!t){ alert('enter token'); return; }
+  ws = new WebSocket(`ws://${location.host}/ws/chat?token=${t}`);
+  ws.onmessage = (evt)=>{
+    const data = JSON.parse(evt.data);
+    document.getElementById('log').textContent += `\nFrom ${data.from}: ${data.message}`;
+  }
+}
+function sendMsg(){
+  if(!ws){ connect(); }
+  const to = parseInt(document.getElementById('to').value);
+  const msg = document.getElementById('message').value;
+  ws.send(JSON.stringify({to, message: msg}));
+}
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>SkillSwap</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css"/>
+  </head>
+  <body>
+    <header>
+      <h1>SkillSwap</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/web/nearby">Nearby</a>
+        <a href="/web/login">Login</a>
+        <a href="/web/profile">Profile</a>
+        <a href="/web/chat">Chat</a>
+      </nav>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
